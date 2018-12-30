@@ -20,29 +20,33 @@
       </p>
 
       <table class="table">
-        <thead>
+        <thead class="text-center">
           <tr>
-            <th>Name</th>
-            <th>Price</th>
+            <th>Nombre</th>
+            <th>Categorias</th>
+            <th>Precio</th>
+            <th>Opciones</th>
           </tr>
         </thead>
 
-        <tbody>
+        <tbody class="text-center">
           <% @products.each do |product| %>
           <tr>
             <td>
               <%= product.name %>
             </td>
             <td>
+                <% product.categories.each_with_index do |category, index|%>
+                  <%= category.name %>
+                  <%= index < product.categories.length-1 ? "," : "" %>
+                <%end%>
+              </td>
+            <td>
               <%= product.price %>
             </td>
             <td>
               <%= link_to 'Show', product %>
-            </td>
-            <td>
               <%= link_to 'Edit', edit_product_path(product) %>
-            </td>
-            <td>
               <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
             </td>
           </tr>
